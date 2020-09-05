@@ -19,4 +19,18 @@ class Solution:
                 j+=1
         return result
 
-print(Solution().partitionLabels("ababcbacadefegdehijhklij"))
+    def abc(self, S):
+        if not S:
+            return False
+        result = []
+        d = {b:a for a,b in enumerate(S)}
+        j = 0
+        anchor = 0
+        for i in range(len(S)):
+            j = max(j,d[S[i]])
+            if i==j:
+                result.append(i-anchor+1)
+                anchor = i+1
+        return result
+
+print(Solution().abc("ababcbacadefegdehijhklij"))

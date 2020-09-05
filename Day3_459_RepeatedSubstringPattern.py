@@ -1,5 +1,5 @@
 class Solution:
-    def repeatedSubstringPattern(self, s: str) -> bool:
+    def repeatedSubstringPattern(self, s):
         if not s:
             return False
         # if set(s):
