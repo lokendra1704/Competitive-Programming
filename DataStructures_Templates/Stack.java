@@ -10,15 +10,15 @@ class StackUnderFlowException extends Exception {
 }
 
 public class Stack {
-    private int[] stack;
+    int[] stack;
     int top;
     Stack(){
-        stack = new int[100];
-        top = 0;  //Top will be 0 if there are no elements. So if top = 0 and we want to pop, StackUnderFlow Exception is raised
+        this.stack = new int[100];
+        this.top = 0;  //Top will be 0 if there are no elements. So if top = 0 and we want to pop, StackUnderFlow Exception is raised
     }
     Stack(int[] arr) throws StackOverFlowException{
-        stack = new int[100];
-        top = 0;
+        this.stack = new int[100];
+        this.top = 0;
         for (int e: arr)
             this.push(e);
     }
@@ -35,7 +35,8 @@ public class Stack {
             throw new StackUnderFlowException("Stack is already Empty");
         }
         else {
-            int temp = this.stack[this.top--];
+            int temp = this.stack[--this.top];
+            this.stack[top] = 0;
             return temp;
         }
     }
@@ -54,7 +55,7 @@ public class Stack {
             throw new StackUnderFlowException("Stack is Empty");
         else {
             for(int e: this.stack)
-                System.out.print(e+' ');
+                System.out.print(e+" ");
             System.out.println();
         }
     }
@@ -62,10 +63,12 @@ public class Stack {
     public static void main(String[] args){
         Stack s1 = new Stack();
         try {
-            //Try UnCommenting This Line
-            //s1.pop(); 
-            for(int i=0;i<100;i++)              
+            //Try UnCommenting This Line 
+            for(int i=1;i<=100;i++)
                 s1.push(i);
+            System.out.println(s1.pop());
+            s1.push(50);
+            System.out.println(s1.peek());
             s1.print();
         }
         catch (StackUnderFlowException e) {
