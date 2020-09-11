@@ -80,7 +80,6 @@ public class Stack {
     public static void main(String[] args){
         Stack s1 = new Stack();
         try {
-            //Try UnCommenting This Line 
             for(int i=1;i<=100;i++)
                 s1.push(i);
             System.out.println(s1.pop());
