@@ -18,6 +18,11 @@ public class Stack {
         this.stack = new int[size];
         this.top = 0;  //Top will be 0 if there are no elements. So if top = 0 and we want to pop, StackUnderFlow Exception is raised
     }
+    Stack(int size){
+        this.size = size;
+        this.stack = new int[size];
+        this.top = 0;
+    }
     Stack(int[] arr) throws StackOverFlowException{
         this.size = 100;
         this.stack = new int[size];
@@ -26,7 +31,7 @@ public class Stack {
             this.push(e);
     }
     void push(int val) throws StackOverFlowException {
-        if (this.top < 100) {
+        if (this.top < this.size) {
             this.stack[this.top++] = val;
         }
         else {
