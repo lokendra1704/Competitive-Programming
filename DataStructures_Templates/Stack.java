@@ -12,12 +12,15 @@ class StackUnderFlowException extends Exception {
 public class Stack {
     int[] stack;
     int top;
+    int size;
     Stack(){
-        this.stack = new int[100];
+        this.size = 100;
+        this.stack = new int[size];
         this.top = 0;  //Top will be 0 if there are no elements. So if top = 0 and we want to pop, StackUnderFlow Exception is raised
     }
     Stack(int[] arr) throws StackOverFlowException{
-        this.stack = new int[100];
+        this.size = 100;
+        this.stack = new int[size];
         this.top = 0;
         for (int e: arr)
             this.push(e);
@@ -60,6 +63,15 @@ public class Stack {
         }
     }
 
+    void extend(){
+        this.size = 2*this.size;
+        int[] temp = new int[this.size];
+        for(int i=0;i<this.stack.length;i++){
+            temp[i] = this.stack[i];
+        }
+        this.stack = temp;
+    }
+
     public static void main(String[] args){
         Stack s1 = new Stack();
         try {
@@ -70,6 +82,7 @@ public class Stack {
             s1.push(50);
             System.out.println(s1.peek());
             s1.print();
+            s1.extend();
         }
         catch (StackUnderFlowException e) {
             System.out.println(e.getMessage());
