@@ -40,12 +40,28 @@ class ClassicSegmentTree:
             self.tree[pos//2] = self.fn(self.tree[l], self.tree[r])
             pos//=2
 
-    def query(self):
-        pass
+    def query(self,l,r):
+        l+=self.n
+        r+=self.n
+        total = 0
+        while l<=r:
+            #Check if l is right child of its parent. If so, its parent will contain sum of redundant leafs.
+            if l%2==1:
+                total+=self.tree[l]
+                l+=1
+            #Check if r is left child of its parent. If so, its parent will contain sum of redundant leafs.
+            if r%2==0:
+                total+=self.tree[r]
+                r-=1
+            l//=2
+            r//=2
+        return total
     
 
 arr = [2,4,5,7]
 tree = ClassicSegmentTree(arr)
 print(tree)
+print(tree.query(0,3))
 tree.update(0,3)
 print(tree)
+print(tree.query(0,3))
