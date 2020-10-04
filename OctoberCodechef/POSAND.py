@@ -22,5 +22,5 @@ def fun(n):
 
 
 for t in range(cin()):
-    n = int()
+    n = cin()
     print(*fun(n))

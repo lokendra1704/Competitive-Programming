@@ -39,3 +39,16 @@ class UnionFind:
             self.union[a] = b
             self.size[b]+=self.size[a]
         self.numberOfComponents-=1
+
+#Small Notation
+class DSU:
+    def __init__(self,n):
+        self.id = [i for i in range(n)]
+    def find(self,n):
+        while self.id[n]!=n:
+            n = self.id[n]
+        return n
+    def union(self,a,b):
+        x = self.find(a)
+        y = self.find(b)
+        self.id[a] = b
