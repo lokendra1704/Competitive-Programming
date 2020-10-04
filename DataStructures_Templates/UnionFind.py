@@ -1,19 +1,19 @@
-class UnionFind:
+class DSU:
     def __init__(self,size):
         if size>0:
-            self.union = [i for i in range(size)]
+            self.arr = [i for i in range(size)]
             self.size = [1]*size
             self.numberOfComponents = size
 
     def find(self,p):
         root = p
-        while self.union[root]!=root:
-            root = self.union[root]
+        while self.arr[root]!=root:
+            root = self.arr[root]
 
         #path-compression
         while p!=root:
-            _next = self.union[p]
-            self.union[p] = root
+            _next = self.arr[p]
+            self.arr[p] = root
             p = _next
 
         return root
@@ -33,10 +33,10 @@ class UnionFind:
         if a==b:
             return
         if self.size[a] > self.size[b]:
-            self.union[b] = a
+            self.arr[b] = a
             self.size[a]+=self.size[b]
         else:
-            self.union[a] = b
+            self.arr[a] = b
             self.size[b]+=self.size[a]
         self.numberOfComponents-=1
 
