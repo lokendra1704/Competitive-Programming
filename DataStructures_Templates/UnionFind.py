@@ -47,7 +47,7 @@ class DSU:
     def find(self,n):
         while self.id[n]!=n:
             n = self.id[n]
-        return n
+        return self.id[n]
     def union(self,a,b):
         x = self.find(a)
         y = self.find(b)
